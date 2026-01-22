@@ -57,7 +57,7 @@ if (!is_downloaded) {
   )
 
   # Unzip samples
-  files %>%
+  files_sel %>%
     str_c("input/GSE63310/", ., ".gz", sep = "") %>%
     walk(gunzip)
 }
@@ -105,6 +105,15 @@ design <- model.matrix(~ 0 + group + lane, data = dge$samples)
 colnames(design) <- colnames(design) %>%
   str_replace("group", "")
 
+# Create contrast matrix
+contrasts <- makeContrasts(
+  lp_vs_basal = LP - Basal,
+  ml_vs_basal = ML - Basal,
+  ml_vs_lp = ML - LP,
+  levels = colnames(design)
+)
+
 # Save data
 saveRDS(dge, here::here("output/dge.rds"))
 saveRDS(design, here::here("output/design.rds"))
+saveRDS(contrasts, here::here("output/contrasts.rds"))
