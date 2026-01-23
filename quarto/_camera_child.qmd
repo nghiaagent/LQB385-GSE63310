@@ -1,0 +1,28 @@
+### Top gene sets
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| column: page
+camera_all[[current_contrast]] %>%
+  reactable(
+    wrap = FALSE,
+    resizable = TRUE,
+    striped = TRUE,
+    bordered = FALSE,
+    highlight = TRUE,
+    compact = TRUE,
+    columns = list(
+      `PValue` = colDef(cell = function(pval) {
+        # Render as scientific format
+        pval_format <- pval %>%
+          format(digits = 3, scientific = TRUE, nsmall = 2)
+      }),
+      `FDR` = colDef(cell = function(pval) {
+        # Render as scientific format
+        pval_format <- pval %>%
+          format(digits = 3, scientific = TRUE, nsmall = 2)
+      })
+    )
+  )
+```

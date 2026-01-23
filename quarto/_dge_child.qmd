@@ -1,0 +1,42 @@
+#### Volcano plot
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+plots_volcano[[current_contrast]] %>%
+  plot()
+```
+
+#### Top DEGs
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| column: page
+dge_toptables[[current_contrast]] %>%
+  reactable(
+    wrap = FALSE,
+    resizable = TRUE,
+    striped = TRUE,
+    bordered = FALSE,
+    highlight = TRUE,
+    compact = TRUE,
+    columns = list(
+      `AveExpr` = colDef(format = colFormat(digits = 2)),
+      `t` = colDef(format = colFormat(digits = 2)),
+
+      `B` = colDef(format = colFormat(digits = 2)),
+      `logFC` = colDef(format = colFormat(digits = 2)),
+      `P.Value` = colDef(cell = function(pval) {
+        # Render as scientific format
+        pval_format <- pval %>%
+          format(digits = 3, scientific = TRUE, nsmall = 2)
+      }),
+      `adj.P.Val` = colDef(cell = function(pval) {
+        # Render as scientific format
+        pval_format <- pval %>%
+          format(digits = 3, scientific = TRUE, nsmall = 2)
+      })
+    )
+  )
+```

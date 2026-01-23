@@ -1,0 +1,49 @@
+# CAMERA gene set analysis
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+here::i_am("quarto/04_camera.qmd")
+library("limma")
+library("reactable")
+library("tidyverse")
+
+dge <- readRDS(here::here("output/dge.rds"))
+contrasts <- readRDS(here::here("output/contrasts.rds"))
+camera_all <- readRDS(here::here("output/camera_all.rds"))
+
+
+```
+:::{.panel-tabset}
+
+## Luminal progenitors vs. Basal cells
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- 1
+```
+
+{{< include _camera_child.qmd >}}
+
+## Mature luminal vs. Basal cells
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- current_contrast + 1
+```
+
+{{< include _camera_child.qmd >}}
+
+## Mature luminal vs. Luminal progenitors
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- current_contrast + 1
+```
+
+{{< include _camera_child.qmd >}}
+
+:::
