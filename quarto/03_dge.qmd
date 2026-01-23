@@ -1,0 +1,66 @@
+# Differential gene expression analysis
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+here::i_am("quarto/03_dge.qmd")
+library("limma")
+library("reactable")
+library("tidyverse")
+
+dge_toptables <- readRDS(here::here("output/dge_toptables.rds"))
+dge_fit <- readRDS(here::here("output/dge_fit.rds"))
+plots_volcano <- readRDS(here::here("output/volcano/plots_volcano.rds"))
+
+```
+
+## Summary statistics
+
+```{r}
+summary(decideTests(dge_fit))
+```
+
+**Note**: Student uses this to answer questions (how many genes were up/downreg between cell types)
+
+## Specific comparisons
+
+Section question ideas:
+
+- Which gene is the top upreg / downregulated in a comparison
+- Where is [specific gene] located on the volcano plot
+- What is the range of logFC
+- Why are genes noted when they have both logFC > 1 and adj.P.val < 0.05
+
+:::{.panel-tabset}
+
+### Luminal progenitors vs. Basal cells
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- 1
+```
+
+{{< include _dge_child.qmd >}}
+
+### Mature luminal vs. Basal cells
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- current_contrast + 1
+```
+
+{{< include _dge_child.qmd >}}
+
+### Mature luminal vs. Luminal progenitors
+```{r}
+#| echo: FALSE
+#| include: FALSE
+# Set comparison
+current_contrast <- current_contrast + 1
+```
+
+{{< include _dge_child.qmd >}}
+
+:::

@@ -1,0 +1,18 @@
+project:
+  type: book
+
+book:
+  title: "LQB385 PoC - GSE63310"
+  author: "Mitchell Nguyen"
+  date: "8/18/2021"
+  chapters:
+    - index.qmd
+    - 01_methods.qmd
+    - 02_eda.qmd
+    - 03_dge.qmd
+    - 04_camera.qmd
+
+format:
+  html:
+    theme: pulse
+    embed-resources: true

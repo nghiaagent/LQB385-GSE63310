@@ -1,0 +1,24 @@
+# Exploratory data analysis
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+here::i_am("quarto/02_eda.qmd")
+
+# Import packages
+library("tidyverse")
+
+# Load data
+plot_pca <- readRDS(here::here("output/pca/plot_pca.rds"))
+```
+
+## PCA
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+plot(plot_pca)
+```
+
+## Heatmap
+![Heatmap](../output/heatmap/heatmap_log_counts_per_million.png) 

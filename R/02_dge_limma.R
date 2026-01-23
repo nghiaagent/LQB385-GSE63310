@@ -9,6 +9,7 @@ design <- readRDS(here::here("output/design.rds"))
 contrasts <- readRDS(here::here("output/contrasts.rds"))
 contrasts_coefs <- c(1:ncol(contrasts)) %>%
   set_names(colnames(contrasts))
+
 # Process data prior to analysis
 dge <- dge %>%
   # Remove lowly expressed genes
@@ -37,9 +38,9 @@ dge_toptables <- contrasts_coefs %>%
     ) %>%
       filter(adj.P.Val < 0.05, logFC > 0) %>%
       arrange(desc(logFC)) %>%
-      top_n(10)
+      slice_head(n = 10)
 
-    # Get bottom 10 upregulated genes
+    # Get top 10 downregulated genes
     downreg <- topTable(
       dge_fit,
       coef = coef,
@@ -47,9 +48,9 @@ dge_toptables <- contrasts_coefs %>%
     ) %>%
       filter(adj.P.Val < 0.05, logFC < 0) %>%
       arrange(desc(logFC)) %>%
-      top_n(-10)
+      slice_tail(n = 10)
 
-    # Merge and return
+    # Return merged table
     all <- rbind(upreg, downreg)
     return(all)
   })
