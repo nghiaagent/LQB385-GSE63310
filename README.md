@@ -51,3 +51,11 @@ source(here::here("R/99_build_dataset.R"))
     files.
 3.  Open the `LQB385_BW3.ipynb` notebook and run all cells sequentially
     to reproduce the analyses.
+
+## Limitations
+
+- As the webR-enabled Jupyter interface has no internet access, images
+  cannot be hyperlinked from the web. Instead, all images were
+  base64-encoded and embedded directly into the notebook.
+- This solution cannot render HTML tables from R code cells (unlike
+  e.g. Quarto Live). Instead, they were rendered as text using `kable`.
