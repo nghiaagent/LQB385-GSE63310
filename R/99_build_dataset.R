@@ -1,12 +1,12 @@
 here::i_am("R/99_build_dataset.R")
 
 # Run all scripts
-source("R/01_load_gse63310.R")
-source("R/01_load_msigdb.R")
-source("R/02_dge_limma.R")
-source("R/03_camera.R")
-source("R/03_correlation.R")
-source("R/04_pca.R")
+source(here::here("R/01_load_gse63310.R"))
+source(here::here("R/01_load_msigdb.R"))
+source(here::here("R/02_dge_limma.R"))
+source(here::here("R/03_camera.R"))
+source(here::here("R/03_correlation.R"))
+source(here::here("R/04_pca.R"))
 
 # Rename objects
 GSE_logCPM <- dge_voom
